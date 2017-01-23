@@ -1,4 +1,14 @@
 // component styles are encapsulated and only applied to their components
-* {
-  color: #FFEF00;
+md-card-actions > button {
+    margin-left: 10px;
+}
+
+.add-button {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+
+  &[md-mini-fab] {
+    top: 12px;
+  }  
 }

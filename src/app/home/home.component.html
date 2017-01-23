@@ -1,3 +1,36 @@
-<p>
-  Home Works!
-</p>
+<div fxShow="false" fxShow.gt-xs="true">
+    <a class="add-button" md-raised-button color="accent" [routerLink]="['new']">
+        NEW CARD
+    </a>
+</div>
+
+<div fxShow="true" fxShow.gt-xs="false">
+    <a class="add-button" md-mini-fab color="accent" [routerLink]="['new']">
+        <md-icon>add_circle_outline</md-icon>
+    </a>
+</div>
+
+<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap="wrap" color="primary">
+    <md-card fxFlex fxFlex.gt-xs="33%" fxFlex.gt-sm="25%" fxFlexFill.xs *ngFor="let card of cards">
+        <md-card-header>
+            <md-card-title>{{card.character}}</md-card-title>
+            <md-card-subtitle>{{card.age}}</md-card-subtitle>
+            <img md-card-avatar [src]="card.status === 'alive' ? '/img/alive.jpg' : '/img/rip.png'">
+        </md-card-header>
+
+        <img md-card-image height="150" [src]="getSrc(card)">
+        <md-card-content>
+            <md-card-subtitle *ngIf="card.title?.length">None</md-card-subtitle>
+            <span class="title" *ngFor="let title of card.titles">{{title}}<br></span>
+        </md-card-content>
+
+        <md-card-actions align="center">
+            <button md-icon-button color="primary" (click)="onEdit(card.character)">
+                <md-icon>mode_edit</md-icon>
+            </button>
+            <button md-icon-button color="warn" (click)="onRemoveClick(card)">
+                <md-icon>delete_forever</md-icon>
+            </button>
+        </md-card-actions>
+    </md-card>
+</div>

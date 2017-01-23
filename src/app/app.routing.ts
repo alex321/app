@@ -1,11 +1,12 @@
-import { RouterModule, Routes } from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
+import {CardEditComponent} from './card-edit/card-edit.component';
+import {HomeComponent} from './home/home.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'about', component: AboutComponent}
+  {path: '', component: HomeComponent},
+  {path: 'new', component: CardEditComponent},
+  {path: 'edit/:character', component: CardEditComponent}
 ];
 
 export const routing = RouterModule.forRoot(routes);

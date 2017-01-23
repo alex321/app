@@ -1,0 +1,64 @@
+<div fxLayout="row" fxLayoutAlign="center" [formGroup]="form">
+  <div fxFlex.xs="100%" fxFlex.gt-xs="280px" fxLayout="column">
+    <div fxFlexAlign="center" fxFlex="45px">
+      <button class="btn btn-primary" type="button" [disabled]="!form.valid" (click)="onSave()">
+        Save
+      </button>
+      <a class="btn btn-secondary" href="" [routerLink]="'/'" role="button">
+        Cancel
+      </a>
+    </div>
+    <div fxFlex>
+      <label for="name">Character Name</label>
+      <input id="name" class="form-control" type="text" formControlName="character" required>
+    </div>
+    <div fxFlex>
+      <label for="age">Age</label>
+      <input id="age" class="form-control" type="number" formControlName="age" step="1" required>
+    </div>
+    <div fxFlex>
+      <div class="form-group">
+        <label for="image">Image</label>
+        <input type="file" class="form-control-file" (change)="onImageSelection($event)" id="image">
+        <img class="image" #image>
+      </div>
+    </div>
+    <div fxFlex>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="radio" value="alive" name="status" formControlName="status">
+          <img src="/img/alive.jpg" height="30" width="30">
+          <small>(alive)</small>
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="radio" value="dead" formControlName="status" name="status">
+          <img src="/img/rip.png" height="30" width="30">
+          <small>(dead)</small>
+        </label>
+      </div>
+    </div>
+    <div fxFlex>
+      <label>Titles:</label>
+      <div class="input-group">
+        <input type="text" class="form-control" ngModel [ngModelOptions]="{'standalone': true}" placeholder="New title" #title>
+        <span class="input-group-btn">
+          <button class="btn btn-secondary" type="button" (click)="onAdd(title.value)" [disabled]="!title.value">
+            Add
+          </button>
+        </span>
+      </div>
+    </div>
+    <div fxFlex>
+      <ul>
+        <li *ngFor="let title of form.value.titles; let i=index">
+          {{title}}
+          <button md-icon-button color="warn" (click)="onTitleDelete(i)">
+            <md-icon>delete_forever</md-icon>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
